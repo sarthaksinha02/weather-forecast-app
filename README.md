@@ -3,7 +3,7 @@
 A modern, responsive Weather Forecast Web Application built using React.js, Vite, Tailwind CSS, and the OpenWeather API.
 The app allows users to search for any city and view real-time weather information with dynamic icons, animations, and a clean UI.
 
-Live Demo - weatherflux.vercel.app
+Live Demo - https://weatherflux.vercel.app/
 
 ✨ Features
 
