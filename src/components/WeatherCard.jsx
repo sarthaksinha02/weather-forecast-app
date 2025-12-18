@@ -22,15 +22,24 @@ export default function WeatherCard() {
   const [data, setData] = useState(null)
 
   const fetchWeather = async () => {
-    try {
-      const res = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_WEATHER_API_KEY}`
-      )
-      setData(res.data)
-    } catch (error) {
-      alert("Waiting for API key activation ⏳")
+  if (!city.trim()) return
+
+  try {
+    const res = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_WEATHER_API_KEY}`
+    )
+    setData(res.data)
+  } catch (error) {
+    if (error.response?.status === 404) {
+      alert("City not found. Please enter a valid city name.")
+    } else if (error.response?.status === 401) {
+      alert("Invalid API key. Please check your API key.")
+    } else {
+      alert("Something went wrong. Please try again later.")
     }
   }
+}
+
 
   const getWeatherIcon = (condition) => {
   switch (condition) {
